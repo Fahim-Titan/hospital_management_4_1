@@ -1,0 +1,60 @@
+REATE TABLE PATIENT 
+(
+Patient_Id int not NULL CHECK (regexp_like(Patient_Id,'[0-3]{7}')),
+Gender VARCHAR(6) CHECK (Gender in ('male','female')),
+Dob VARCHAR(20),
+P_name VARCHAR(15) CHECK (regexp_like(P_name,'[a-zA-Z]')),
+Weight NUMBER(5,2),
+Phone NUMBER(11) CHECK (regexp_like(Phone,'[0-9]')),
+primary key (Patient_Id)
+);
+
+
+
+CREATE TABLE Doctor
+(
+Doctor_Id int not NULL CHECK (regexp_like(Doctor_Id,'[4-5]{4}')),
+Doctor_name varchar(30) CHECK (regexp_like(Doctor_name,'[a-zA-Z]')),
+Doctor_dept VARCHAR(30) CHECK (regexp_like(Doctor_dept,'[a-zA-Z]')),
+primary key (Doctor_Id)
+);
+
+
+
+CREATE TABLE Serial 
+(
+Serial_Id int not NULL CHECK (regexp_like(Serial_Id,'[a-z][0-9][0-9][0-9]')),
+Doctor_Id int ,
+Patient_Id int,
+foreign key (Doctor_Id)
+ references Doctor (Doctor_ID) 
+	on delete cascade ,
+foreign key (Patient_Id) 
+references PATIENT (Patient_Id) 
+on delete cascade 
+);
+
+
+
+CREATE TABLE Room
+(
+Room_Id int not null CHECK (regexp_like(Room_Id,'[0-9][0-9][0-9][0-9]')),
+Room_Type varchar(2),
+Patient_Id int,
+foreign key (Patient_Id) 
+references PATIENT (Patient_Id) 
+on delete cascade 
+);
+
+
+
+CREATE TABLE Payment(
+Patient_Bill_Id int not null CHECK (regexp_like(Patient_Bill_Id,'[0-9][0-9][0-9][0-9]')), 
+Patient_Id int,
+Date_Bill_Paid VARCHAR(15),
+Total_amount number(9,2),
+Primary key (Patient_Bill_Id),
+foreign key (Patient_Id)
+references PATIENT (Patient_Id) 
+on delete cascade 
+);

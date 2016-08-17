@@ -1,0 +1,10 @@
+CREATE FUNCTION GET_patient_name(paitent_id_param IN PATIENT.PATIENT_ID%TYPE)
+   RETURN varchar
+   IS get_name PATIENT.P_NAME%TYPE;
+   BEGIN
+      SELECT P_NAME
+      INTO get_name
+      FROM patient
+      WHERE Patient_Id  = paitent_id_param ;
+      RETURN get_name;
+    END;

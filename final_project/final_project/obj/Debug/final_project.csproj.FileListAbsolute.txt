@@ -1,0 +1,9 @@
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\bin\Debug\final_project.exe.config
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\obj\Debug\final_project.csprojResolveAssemblyReference.cache
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\obj\Debug\final_project.Form1.resources
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\obj\Debug\final_project.Properties.Resources.resources
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\obj\Debug\final_project.csproj.GenerateResource.Cache
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\bin\Debug\final_project.exe
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\bin\Debug\final_project.pdb
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\obj\Debug\final_project.exe
+E:\my world\study\4-1\DDMS\lab\final_project\final_project\obj\Debug\final_project.pdb

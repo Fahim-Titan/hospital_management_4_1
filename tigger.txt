@@ -1,0 +1,73 @@
+create or replace trigger room_generate
+before insert on room
+for each row
+declare
+cnt INTEGER;
+typ varchar(2);
+begin
+SELECT ROOM_ID into cnt from ROOM ;
+if cnt>5000 then 
+SELECT ROOM_TYPE into typ FROM ROOM;
+typ := 'c';
+:new.room_type := typ ;
+else
+typ := 'w';
+:new.room_type := typ ;
+end if;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+typ := 'w';
+end;
+
+
+
+create or replace trigger balance_generate
+before insert on PAYMENT
+for each row
+declare
+cnt number;
+begin
+SELECT Total_Amount into cnt from PAYMENT;
+cnt := :new.Total_Amount - :new.Total_Amount*0.05;
+if :new.Total_Amount > 4999 then
+:new.Total_Amount := cnt; 
+else
+:new.Total_Amount := cnt;
+end if ;
+end;
+
+
+
+
+
+//in development stage. 
+create or replace trigger room_generate
+before insert on room
+for each row
+declare
+
+cursor ROOM_cusor is 
+SELECT ROOM_ID from ROOM ;
+
+cursor room_type_cursor is 
+SELECT ROOM_TYPE into typ FROM ROOM;
+
+cnt room_cursor%rowtype;
+typ room_type_cursor%rowtype;
+begin
+open ROOM_cursor;
+FETCH ROOM_cusor into cnt 
+if cnt>5000 then 
+
+typ := 'c';
+:new.room_type := typ ;
+else
+typ := 'w';
+:new.room_type := typ ;
+end if;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+typ := 'w';
+close ROOM_cursor;
+close room_type_cursor;
+end;
